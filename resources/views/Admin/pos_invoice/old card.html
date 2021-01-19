@@ -1,0 +1,161 @@
+<!-- <div class="page-body">
+<div class="row">
+<div class="col-xl-12">
+
+<fieldset>
+	<div class="row">
+
+
+
+			@foreach($products as $product)
+
+	<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+		<div class="product_data">
+
+<div class="card prod-view">
+
+<div class="prod-item text-center">
+<div class="prod-img">
+<div class="option-hover">
+
+<button type="button" class="add-to-cart-btn btn btn-danger btn-icon waves-effect waves-light hvr-bounce-in option-icon">
+<i class="icofont icofont-cart-alt f-20"></i>
+</button>
+</div>
+<a href="#!" class="hvr-shrink">
+<img src="{{url('images',$product->image)}}" class="img-fluid o-hidden" alt="prod4.png">
+</a>
+</div>
+<input type="hidden" class="product_id" name="" value="{{$product->id}}"><br>
+<input  type="number" value="1" min="1" class="qty-input" max="100" name="">
+<div class="prod-info">
+<h5><a href="#!" class="txt-muted"> Women black Frock </a></h5>
+<div class="stars stars-example-css m-b-10">
+
+</div>
+<h6 class="txt-danger"><i class="icofont icofont-cur-dollar"></i> Gh{{$product->sprice}}</h6>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+	@endforeach
+
+</div>
+</fieldset>
+
+</div>
+
+</div>
+</div>
+
+
+</div>
+
+
+
+
+
+<div id="styleSelector">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> -->
+
+
+<div class="page-body">
+<div class="row">
+
+
+
+
+
+
+
+
+
+<div class="col-xl-12">
+<div class="card">
+<div class="card-header">
+<h5>Last Activity</h5>
+<div class="f-right">
+<label class="label label-success">Today</label>
+<label class="label label-danger">Month</label>
+</div>
+</div>
+<div class="card-block table-border-style">
+<div class="table-responsive analytic-table">
+
+
+
+
+
+</tbody>
+</table> 
+
+<table id="simpletable" class="table table-striped table-bordered nowrap">
+<thead>
+<tr>
+<th>Image</th>
+<th>Name</th>
+ <th>action</th>
+
+</tr>
+</thead>
+<tbody>
+@foreach ($products as $product)  
+<tr class="product_data">
+
+<td class="img-pro ">
+
+<img src="{{url('images',$product->image)}}"  height="40" width="40" class="img-fluid o-hidden" alt="prod4.png">
+</td>
+<input type="hidden" class="product_id" name="" value="{{$product->id}}">
+
+<td>{{ $product->name }}</td>
+  
+ 
+<td>
+  
+                        
+<button type="button" class="add-to-cart-btn btn btn-danger btn-icon waves-effect waves-light hvr-bounce-in option-icon">
+<i class="icofont icofont-cart-alt f-20"></i>
+</button>
+                    
+</td>
+
+</tr>
+@endforeach
+
+</tfoot>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+</div>
+</div>
+<div id="styleSelector">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
