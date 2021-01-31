@@ -16,12 +16,7 @@
 </div>
 </div>
 <div class="card-block">
-<form id="main" method="POST" action="#" enctype="multipart/form-data">
-                        {{ csrf_field() }}
-
-
-
-
+<form id="main" method="get" action="{{ route('sales.search', [$sales->id]) }}" enctype="multipart/form-data">
 
 <div class="form-group row">
 <div class="col-sm-4">

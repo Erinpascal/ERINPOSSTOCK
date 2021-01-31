@@ -34,7 +34,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('product/overdue', 'ProductController@overdue');
     Route::patch('/restock/{products}', 'ProductController@restoch');
 
-    Route::post('/restock/update/{id}', 'ProductController@restoch')->name('restoch.update');
+    Route::post('/restock/update/{id}', 'ProductController@restoch')->name('restoch.search');
 
 
 

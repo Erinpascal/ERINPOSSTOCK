@@ -39,7 +39,7 @@ class ReportController extends Controller
 
     $sales = Sale::select("sales.*")
         ->whereBetween('created_at', [$request->from, $request->to])
-        ->all($id);
+        ->get();
         return view('Admin.report.pdf',compact('sales'));
 
 }
