@@ -17,7 +17,7 @@ class SalesController extends Controller
      */
     public function index()
     {
-         $sales = Sale::with('products')->get();
+         $sales = Sale::get();
 
         return view('admin.sales.index', compact('sales'));
     }
@@ -51,7 +51,9 @@ class SalesController extends Controller
      */
     public function show($id)
     {
-        //
+        $sales = Sale::findorFail($id);
+        return view('admin.sales.show', compact('sales'));
+
     }
 
     /**

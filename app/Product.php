@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+        public $table = 'products';
+
      protected $fillable = [
         'name',
         'image',
@@ -13,6 +15,7 @@ class Product extends Model
         'brand_id',
         'sprice',
         'bprice',
+        'qty'
     ];
 
     public function category()
@@ -26,6 +29,8 @@ class Product extends Model
     }
     public function sales()
     {
-        return $this->belongsToMany(Sales::class);
+        return $this->belongsToMany(Sale::class);
     }
+
+   
 }

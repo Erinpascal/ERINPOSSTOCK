@@ -31,6 +31,14 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles','RoleController');
     Route::resource('users','UserController');
     Route::resource('products','ProductController');
+    Route::get('product/overdue', 'ProductController@overdue');
+    Route::patch('/restock/{products}', 'ProductController@restoch');
+
+    Route::post('/restock/update/{id}', 'ProductController@restoch')->name('restoch.update');
+
+
+
+
     Route::get('admin/delete_product/{id}', 'ProductController@deleteproduct');
 
     Route::resource('categories', 'CategoryController');
@@ -50,6 +58,7 @@ Route::delete('delete-from-cart','CartController@deletefromcart');
 Route::get('checkout','CheckoutController@index');
 
 Route::post('place_order', 'CheckoutController@storeorder');
+Route::get('generate-invoice/{id}','InvoiceController@invoice');
 
 
 
@@ -58,10 +67,14 @@ Route::delete('remove-from-cart', 'CartController@remove');
 Route::resource('sales', 'CartController');
 Route::resource('allsale', 'SalesController');
 
+
 Route::get('report', 'ReportController@index');
-Route::post('report/search', 'ReportController@search')->name('report.search');
-Route::post('report/excel', 'ReportController@exportExcel')->name('report.excel');
+
 Route::post('report/pdf', 'ReportController@exportPDF')->name('report.pdf');
+// Route::post('report/search', 'ReportController@search')->name('report.search');
+Route::get('report/search/{id}','ReportController@getRecord')->name('sales.search');
+
+
 
 
     // Route::post('add-to-cart','CartController@addtocart');

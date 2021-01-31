@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Supply;
+
 
 
 class HomeController extends Controller
@@ -27,10 +29,15 @@ class HomeController extends Controller
     {
     
         $products = \DB::table('products')->count();
-         $quantity = \DB::table('products')->sum('quantity');
+        $sales = \DB::table('sales')->count();
+        $suppliers = \DB::table('supplies')->count();
+
+        $todaysales = \DB::table('sales')->where('created_at', '>=', date('Y-m-d').' 00:00:00')->count();
+
+         $quantity = \DB::table('products')->sum('qty');
 
         $shortageNumber = 50;
-        $lowstock = Product::where('quantity', '<=', $shortageNumber)->count();
-        return view('home',compact('products','quantity','lowstock'));
+        $lowstock = Product::where('qty', '<=', $shortageNumber)->count();
+        return view('home',compact('products','quantity','lowstock','sales','todaysales','suppliers'));
     }
 }

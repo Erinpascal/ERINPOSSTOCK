@@ -19,6 +19,13 @@
 <div class="card-header-right">
 <i class="icofont icofont-rounded-down"></i>
 
+@if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
+    
+
 </div>
 </div>
 <div class="card-block">
@@ -41,6 +48,7 @@
 
 <td>
    <form class="row" method="POST" action="{{ route('categories.destroy', $categories->id) }}" onsubmit = "return confirm('Are you sure?')">
+    
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <a href="{{ route('categories.edit', $categories->id) }}" title="Edit City"  class="m-r-15 text-muted f-18"><i class="icofont icofont-ui-edit"></i></a>

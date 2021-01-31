@@ -59,11 +59,11 @@ class CheckoutController extends Controller
 
                  ]);
        
-            \DB::table('products')->where('id', $products->id)->decrement('quantity',(int)$itemdata['item_quantity']);
+            \DB::table('products')->where('id', $products->id)->decrement('qty',(int)$itemdata['item_quantity']);
 
             }
             Cookie::queue(Cookie::forget('shopping_cart'));
-            return back();
+            return back()->with('success','Sales successfully made');
         }
     }
 

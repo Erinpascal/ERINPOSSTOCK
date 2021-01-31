@@ -35,7 +35,7 @@
  <th>Category</th>
 <th>Quantity</th>
 <th>Selling Price</th>
-<!-- <th>Bought Price</th> -->
+<th>Bought Price</th>
 <th> Status</th>
  <th>action</th>
 
@@ -51,7 +51,7 @@
 <td>{{ $product->brand->name}}</td>
  <td>{{ $product->category->name}}</td>
   <td>{{ $product->qty}}</td>
-  <!-- <td>Gh{{ $product->bprice}}</td> -->
+  <td>Gh{{ $product->bprice}}</td>
  <td>Gh{{ $product->sprice}}</td>
 
 <td>
@@ -69,15 +69,12 @@
    <form class="row" method="POST" action="{{ route('products.destroy', $product->id) }}" onsubmit = "return confirm('Are you sure?')">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                        <a href="{{ route('products.edit', $product->id) }}" title="Edit "  class="m-r-15 text-muted f-18"><i class="icofont icofont-ui-edit"></i></a>
-                        <button type="submit" title="Delete " class="text-muted f-18">
-                          <i class="icofont icofont-delete-alt" ></i>
-                        </button >
+                        <a href="{{ route('products.edit', $product->id) }}" title="Edit City"  class="m-r-15 text-muted f-18"><i class="icofont icofont-ui-edit"></i></a>
                         
-                        
+                        <button type="submit" title="Delete City" class="text-muted f-18">
+                          <i class="icofont icofont-delete-alt"></i>
+                        </button>
                     </form>
-
                     
 </td>
 
@@ -109,5 +106,3 @@
 </div>
 </div>
   @endsection
-
-

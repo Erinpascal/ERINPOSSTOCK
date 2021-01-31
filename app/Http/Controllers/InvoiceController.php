@@ -1,11 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Cookie;
 
 use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
 use App\Invoice;
+use App\Sale;
+
+use PDF;
+
+
 
 class InvoiceController extends Controller
 {
@@ -26,9 +32,25 @@ class InvoiceController extends Controller
      */
     public function create()
     {
+        $cookie_data = stripslashes(Cookie::get('shopping_cart'));
+        $cart_data = json_decode($cookie_data, true);
+        // return view('Admin.cart.index')->with('cart_data',$cart_data);
         
          $products = Product::all();
-        return view('Admin.pos_invoice.create', compact('products'));
+        return view('Admin.pos_invoice.create', compact('products'))->with('cart_data',$cart_data);
+    }
+
+     public function invoice($id)
+    {
+        
+                $sales = Sale::findorFail($id);
+            return view('Admin.pos_invoice.invoice',compact('sales'));
+        //         $data = [
+        //     'sales' => $sales,
+        // ];
+        // $pdf = PDF::loadView('Admin.pos_invoice.invoice', $data);
+
+        // return $pdf->download('fundaofwebit.pdf');
     }
 
     /**

@@ -16,6 +16,9 @@ class Saleitem extends Model
         'price',
         'quantity',
     ];
-
+public function products()
+{
+    return $this->belongsTo(Product::class,'product_id','id');
+}
     
 }

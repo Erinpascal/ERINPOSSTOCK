@@ -3,7 +3,7 @@
 
 <!-- Mirrored from flatable.phoenixcoded.net/default/dashboard-ecommerce.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 10 Jan 2019 11:43:40 GMT -->
 <head>
-<title>Flat Able - Premium Admin Template by Phoenixcoded</title>
+<title>Point Of Sale System</title>
 
 
 <!--[if lt IE 9]>

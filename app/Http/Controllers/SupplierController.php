@@ -45,7 +45,8 @@ class SupplierController extends Controller
         ]);
 
         $supply = Supply::create($request->all());
-        return redirect()->route('suppliers.index');
+        return redirect()->route('suppliers.index')
+        ->with('success','Supplier deleted successfully');
     }
 
     /**
@@ -89,7 +90,8 @@ class SupplierController extends Controller
          $supply->contact = $request->get('contact');
          $supply->location = $request->get('location');
          $supply->save();       
-         return redirect()->route('suppliers.index');
+         return redirect()->route('suppliers.index')
+         ->with('success','Supplier deleted successfully');
     }
 
     /**
@@ -102,6 +104,6 @@ class SupplierController extends Controller
     {
         $supply->delete();
 
-return redirect()->route('suppliers.index')->with('flash_message_success','supplier successfully deleted');
+return redirect()->route('suppliers.index')->with('success','supplier successfully deleted');
     }
 }

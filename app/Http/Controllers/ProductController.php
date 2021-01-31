@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\Product;
 use App\Brand;
+use DB;
 
 
 
@@ -41,6 +42,16 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+
+        $this->validate($request, [
+            'name' =>  ['required'],
+            'qty' =>  ['required'],
+            'bprice' =>  ['required'],
+            'sprice' =>  ['required'],
+            'brand_id' =>  ['required'],
+            'category_id' =>  ['required'],
+        ]);
+
         
          $image = $request->file('image');
         $input['image'] = time().'.'.$image->getClientOriginalExtension();
@@ -52,7 +63,7 @@ class ProductController extends Controller
 
         $products->category_id    = $request->category_id;
         $products->brand_id    = $request->brand_id;
-        $products->quantity = $request->get('quantity');
+        $products->qty = $request->get('qty');
         $products->bprice = $request->get('bprice');
         $products->sprice = $request->get('sprice');
         $products->image = $input['image'];
@@ -65,6 +76,18 @@ class ProductController extends Controller
         return redirect()->route('products.index')
                         ->with('success','Product created successfully.');
     }
+
+    public function restoch(Request $request,Product $products)
+    {
+
+        // $products = Product::find($id);
+
+        DB::table('products')->increment('qty', (int)$request->qty);
+
+       return back();
+
+    }
+
 
     public function edit(Request $request, $id)
     {
@@ -80,10 +103,11 @@ class ProductController extends Controller
     {
         request()->validate([
             'name' => 'required',
-            'quantity' => 'required',
+            'qty' => 'required',
          'bprice' => 'required',
             'sprice' => 'required',
-            'brand' => 'required',
+            'brand_id' =>  'required',
+            'category_id' =>  'required'
 
         ]);
         //  $image = $request->file('image');
@@ -103,10 +127,9 @@ class ProductController extends Controller
          $products->name = $request->get('name');
         $products->category_id    = $request->category_id;
         $products->brand_id    = $request->brand_id;
-        $products->quantity = $request->get('quantity');
+        $products->qty = $request->get('qty');
         $products->bprice = $request->get('bprice');
         $products->sprice = $request->get('sprice');
-        $products->brand = $request->get('brand');
         // $products->image = $input['image'];
           if($file = $request->hasFile('image')) {
             
@@ -136,10 +159,20 @@ class ProductController extends Controller
 
         $product->delete();
 
-return redirect()->route('products.index')->with('flash_message_success','products successfully deleted');
+return redirect()->route('products.index')->with('success','products successfully deleted');
                         
 
     }
+
+      public function overdue()
+    {
+
+    $shortageNumber = 50;
+    $products = Product::where('qty', '<=', $shortageNumber)->get();        
+    return view('Admin.products.overdue',compact('products'));   
+
+     }
+
 
       public function deleteproduct( $id = null)
     {

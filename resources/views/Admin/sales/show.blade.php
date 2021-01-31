@@ -36,8 +36,11 @@
 <div class="col-md-4">
 <div class="row text-center">
 <div class="col-sm-12 invoice-btn-group">
-<button type="button" class="btn btn-primary btn-print-invoice waves-effect waves-light m-r-20">Print Invoice
-</button>
+<!-- <button type="button" class="btn btn-primary btn-print-invoice waves-effect waves-light m-r-20">Print Invoice
+</button> -->
+<a href="{{url('generate-invoice/'.$sales->id)}}" class="btn btn-primary btn-print-invoice waves-effect waves-light m-r-20">Generate invoice</a>
+
+
 <button type="button" class="btn btn-danger waves-effect waves-light">Cancel Invoice
 </button>
 </div>
@@ -47,10 +50,9 @@
 <div class="card-block">
 <div class="row invoive-info">
 <div class="col-md-4 col-xs-12 invoice-client-info">
-<h6>Client Information :</h6>
-<h6 class="m-0">Josephin Villa</h6>
-<p class="m-0 m-t-10">208, Peris Point, Varachha Road, Surat.</p>
-<p class="m-0">(1234) - 567891</p>
+<h6>Client Server :</h6>
+<h6 class="m-0">{{$sales->user->name}}</h6>
+<!-- <p class="m-0 m-t-10">208, Peris Point, Varachha Road, Surat.</p> -->
 
 </div>
 <div class="col-md-4 col-sm-6">
@@ -63,16 +65,13 @@
 </tr>
 
 <tr>
-<th>Id :</th>
-<td>
-#145698
-</td>
+
 </tr>
 </tbody>
 </table>
 </div>
 <div class="col-md-4 col-sm-6">
-<h6 class="m-b-20">Invoice Number:{{ $sales->code }}</h6>
+<h6 class="m-b-20">Invoice Number:{{ $sales->tracking_no }}</h6>
 <h6 class="text-uppercase text-primary">Total Due :
 <span>$900.00</span>
 </h6>
@@ -84,6 +83,8 @@
 <table class="table  invoice-detail-table">
 <thead>
 <tr class="thead-default">
+	<th>item</th>
+
 <th>item</th>
 <th>Quantity</th>
 <th>Amount</th>
@@ -91,18 +92,22 @@
 </tr>
 </thead>
 <tbody>
+	@php $total = "0"; @endphp
+	@foreach($sales->salesitem as $item)
 <tr>
+	<td>{{$item->id}}</td>
 <td>
-<p>@foreach($sales->products as $id => $products)
-  {{ $products->name }}
- @endforeach </p>
+<p>
+  {{$item->products->name}}</p>
 </td>
 <td>
-	({{ $sales ->quantity }} 
+	{{ $item ->quantity }} 
 </td>
-<td>$200.00</td>
-<td>$1200.00</td>
+<td>Gh{{$item->price}}</td>
+<td>{{ $item ->quantity * $item->price}}</td>
 </tr>
+@php $total = $total + ($item->quantity * $item->price) @endphp
+@endforeach
 
 
 </tbody>
@@ -114,26 +119,17 @@
 <div class="col-sm-12">
 <table class="table table-responsive invoice-table invoice-total">
 <tbody>
-<tr>
-<th>Sub Total :</th>
-<td>$4725.00</td>
-</tr>
-<tr>
-<th>Taxes (10%) :</th>
-<td>$57.00</td>
-</tr>
-<tr>
-<th>Discount (5%) :</th>
-<td>$45.00</td>
-</tr>
+
 <tr class="text-info">
 <td>
 <hr />
-<h5 class="text-primary">Total :</h5>
+<h5 class="text-primary">Grand Total :</h5>
 </td>
 <td>
 <hr />
-<h5 class="text-primary">$4827.00</h5>
+<h5 class="text-primary">{{$total}}</h5>
+<hr />
+
 </td>
 </tr>
 </tbody>

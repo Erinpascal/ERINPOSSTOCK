@@ -9,6 +9,16 @@
 <div class="card">
 <div class="card-header">
 <h5>Add Category</h5>
+@if (count($errors) > 0)
+  <div class="alert alert-danger">
+    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+    <ul>
+       @foreach ($errors->all() as $error)
+         <li>{{ $error }}</li>
+       @endforeach
+    </ul>
+  </div>
+@endif
 <div class="card-header-right">
 <i class="icofont icofont-rounded-down"></i>
 

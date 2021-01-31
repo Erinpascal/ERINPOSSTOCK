@@ -7,6 +7,7 @@ use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Category;
 use Gate;
+use DB;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -53,7 +54,7 @@ class CategoryController extends Controller
 
         $categories = Category::create($request->all());
 
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index')->with('success','Category created successfully');
     }
 
     /**
@@ -104,7 +105,7 @@ class CategoryController extends Controller
      
         $categories->save();
 
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index')->with('success','Category updated successfully');
     }
 
     /**
@@ -113,12 +114,19 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $categories)
-    {
-        $categories->delete();
+    // public function destroy(Category $categories)
+    // {
+    //     $categories->delete();
 
-        return back();
+    //     return back()->with('success','category deleted successfully');
+    // }
+
+     public function destroy($id)
+    {
+        DB::table("categories")->where('id',$id)->delete();
+        return back()->with('success','Role deleted successfully');
     }
+
 
 
       public function massDestroy(MassDestroyCategoryRequest $request)

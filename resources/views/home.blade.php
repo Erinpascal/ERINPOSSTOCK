@@ -24,7 +24,7 @@
 <i class="icofont icofont-ui-music text-danger"></i>
 </div>
 <div class="col-sm-8 text-center">
-<h5>100%</h5>
+<h5>{{$suppliers}}</h5>
 <span>Suppliers</span>
 </div>
 </div>
@@ -39,8 +39,8 @@
 <i class="icofont icofont-files text-info"></i>
 </div>
 <div class="col-sm-8 text-center">
-<h5>2000 +</h5>
-<span>Files</span>
+<h5>{{$sales}}</h5>
+<span>sales</span>
 </div>
 </div>
 </div>
@@ -50,8 +50,8 @@
 <i class="icofont icofont-envelope-open text-warning"></i>
 </div>
 <div class="col-sm-8 text-center">
-<h5>120</h5>
-<span>Mails</span>
+<h5>{{$todaysales}}</h5>
+<span>sales today</span>
 </div>
 </div>
 </div>

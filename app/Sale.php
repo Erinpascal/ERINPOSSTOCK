@@ -17,16 +17,26 @@ class Sale extends Model
     protected $fillable = [
         'user_id',
         'tracking_no',
-        'name'
+        'name',
+        'grandtotal'
 
     ];
 
-    public function products()
+    public function user()
     {
-        return $this->belongsToMany(Product::class)->withPivot(['quantity']);
+        return $this->belongsTo(User::class,'user_id','id');
     }
 
+    
+public function salesitem()
+{
+    return $this->hasMany(Saleitem::class,'sale_id','id');
+}
    
+   public function product()
+{
+    return $this->hasMany(Product::class,'product_id','id');
+}
 
     
 }

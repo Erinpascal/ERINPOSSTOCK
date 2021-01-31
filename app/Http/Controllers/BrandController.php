@@ -47,7 +47,8 @@ class BrandController extends Controller
 
         $brand = Brand::create($request->all());
 
-        return redirect()->route('brands.index');
+        return redirect()->route('brands.index')
+                                 ->with('success','Brand created successfully');
     
     }
 
@@ -99,7 +100,8 @@ class BrandController extends Controller
      
         $brand->save();
 
-        return redirect()->route('brands.index');
+        return redirect()->route('brands.index')
+                    ->with('success','Brand updated successfully');
     }
 
     /**
@@ -112,6 +114,6 @@ class BrandController extends Controller
     {
          $brand->delete();
 
-        return back();
+        return back()->with('success','Brand deleted successfully');
     }
 }

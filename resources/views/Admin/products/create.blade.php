@@ -11,6 +11,16 @@
 <div class="card">
 <div class="card-header">
 <h5>Add Products</h5>
+@if (count($errors) > 0)
+  <div class="alert alert-danger">
+    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+    <ul>
+       @foreach ($errors->all() as $error)
+         <li>{{ $error }}</li>
+       @endforeach
+    </ul>
+  </div>
+@endif
 <div class="card-header-right">
 <i class="icofont icofont-rounded-down"></i>
 
@@ -66,7 +76,7 @@
 <div class="form-group row">
 <label class="col-sm-2 col-form-label">Quantity</label>
 <div class="col-sm-10">
-<input type="number" class="form-control" id="quantity" name="quantity" placeholder="quantity">
+<input type="number" class="form-control" id="qty" name="qty" placeholder="qty">
 <span class="messages"></span>
 </div>
 </div>

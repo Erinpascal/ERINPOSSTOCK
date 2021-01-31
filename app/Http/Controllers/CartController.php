@@ -26,7 +26,6 @@ class CartController extends Controller
          $cookie_data = stripslashes(Cookie::get('shopping_cart'));
         $cart_data = json_decode($cookie_data, true);
         return view('Admin.cart.index')->with('cart_data',$cart_data);
-        // return  $cart_data;
 
     }
     public function getsales()

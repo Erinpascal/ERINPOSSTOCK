@@ -65,7 +65,7 @@
 </a>
 <ul class="pcoded-submenu">
 <li class=" ">
-<a href="{{ route("allsale.index") }}" data-i18n="nav.navigate.navbar">
+<a href="{{ route("suppliers.create") }}" data-i18n="nav.navigate.navbar">
 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
 <span class="pcoded-mtext">Suppliers create</span>
 <span class="pcoded-mcaret"></span>
@@ -77,7 +77,7 @@
 
 <ul class="pcoded-submenu">
 <li class=" ">
-<a href="{{ route("allsale.index") }}" data-i18n="nav.navigate.navbar">
+<a href="{{ route("suppliers.index") }}" data-i18n="nav.navigate.navbar">
 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
 <span class="pcoded-mtext">Suppliers list</span>
 <span class="pcoded-mcaret"></span>
@@ -170,7 +170,7 @@
 
 <ul class="pcoded-item pcoded-left-item">
 <li class="">
-<a href="http://flatable.phoenixcoded.net/doc" data-i18n="nav.documentation.main" target="_blank">
+<a href="{{ url('report') }}" data-i18n="nav.navigate.navbar-with-elements">
 <span class="pcoded-micon"><i class="ti-file"></i></span>
 <span class="pcoded-mtext">Reports</span>
 <span class="pcoded-mcaret"></span>
@@ -192,7 +192,7 @@
 <div class="page-wrapper">
 <div class="page-header">
 <div class="page-header-title">
-<h4>Ecommerce Dashboard</h4>
+<h4>POINT OF SALE SYSTEM</h4>
  </div>
 <div class="page-header-breadcrumb">
 <ul class="breadcrumb-title">
@@ -203,7 +203,7 @@
 </li>
 <li class="breadcrumb-item"><a href="#!">Dashboard</a>
 </li>
-<li class="breadcrumb-item"><a href="#!">Ecommerce Dashboard</a>
+<li class="breadcrumb-item"><a href="#!">POS</a>
 </li>
 </ul>
 </div>
