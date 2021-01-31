@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
             $table->string('bprice');
             $table->string('sprice');
             $table->integer('brand_id');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
