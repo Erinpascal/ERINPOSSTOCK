@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Sale;
-use Excel;
+use App\Saleitem;
+
 use Illuminate\Support\Facades\DB;
 use Auth;
 use PDF;
@@ -24,7 +25,9 @@ class ReportController extends Controller
 
     public function index() {
        
-        $sales = Sale::get();
+        // $sales = Sale::get();
+        $sales = Saleitem::with('products')->get();
+
 
         return view('Admin/report/index',compact('sales'));
     }

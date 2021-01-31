@@ -16,9 +16,13 @@ class Saleitem extends Model
         'price',
         'quantity',
     ];
+// public function products()
+// {
+//     return $this->belongsTo(Product::class,'product_id','id');
+// }
 public function products()
-{
-    return $this->belongsTo(Product::class,'product_id','id');
-}
+    {
+        return $this->belongsToMany(Product::class,'product_id','id')->withPivot(['quantity']);
+    }
     
 }

@@ -16,7 +16,7 @@
 </div>
 </div>
 <div class="card-block">
-<form id="main" method="POST" action="{{ route('sales.search', ['id' => $sales->id]) }}" enctype="multipart/form-data">
+<form id="main" method="POST" action="#" enctype="multipart/form-data">
                         {{ csrf_field() }}
 
 
@@ -55,6 +55,8 @@
 <th>id</th>
 <th>Customer Server</th>
 <th>code</th>
+<th>Product</th>
+
 
  <th>action</th>
 
@@ -67,6 +69,13 @@
 <td>{{ $item->user->name }}</td>
 
 <td>{{ $item->tracking_no }}</td>
+<td>
+   <ul>
+                                @foreach($sales->products as  $item)
+                                    <li>{{ $item->name }} ({{ $item->pivot->quantity }} x ${{ $item->price }})</li>
+                                @endforeach
+                                </ul>
+</td>
 
   
 
