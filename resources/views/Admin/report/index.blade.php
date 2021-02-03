@@ -1,4 +1,3 @@
-
 @extends('layouts.adminlayout.admin_design')
 @section('content')
 
@@ -16,7 +15,7 @@
 </div>
 </div>
 <div class="card-block">
-<form id="main" method="get" action="{{ route('sales.search', [$sales->id]) }}" enctype="multipart/form-data">
+<form id="main" method="get" action="#" enctype="multipart/form-data">
 
 <div class="form-group row">
 <div class="col-sm-4">
@@ -58,18 +57,19 @@
 </tr>
 </thead>
 <tbody>
-  @foreach($sales as  $item)
-<tr data-entry-id="{{ $item->id }}">
-<td>{{ $item->id }}</td>
-<td>{{ $item->user->name }}</td>
 
-<td>{{ $item->tracking_no }}</td>
+  @foreach($sales as $sale)
+<tr data-entry-id="{{ $sale->id }}">
+<td>{{ $sale->id }}</td>
+<td>{{ $sale->user->name }}</td>
+
+<td>{{ $sale->tracking_no }}</td>
 <td>
    <ul>
-                                @foreach($sales->products as  $item)
+    @foreach($sale->products as $key => $item)
                                     <li>{{ $item->name }} ({{ $item->pivot->quantity }} x ${{ $item->price }})</li>
                                 @endforeach
-                                </ul>
+    </ul>
 </td>
 
   
@@ -79,7 +79,7 @@
 <td>
   
 
-                        <a href="{{ route('allsale.show', $item->id) }}" title="show sales"  class="btn btn-danger"><i class="icofont icofont-eye-alt"></i></a>
+                        <a href="#" title="show sales"  class="btn btn-danger"><i class="icofont icofont-eye-alt"></i></a>
 
                                            
 </td>

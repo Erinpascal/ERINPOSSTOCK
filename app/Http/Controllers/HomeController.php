@@ -33,11 +33,12 @@ class HomeController extends Controller
         $suppliers = \DB::table('supplies')->count();
 
         $todaysales = \DB::table('sales')->where('created_at', '>=', date('Y-m-d').' 00:00:00')->count();
+        $todaysalesvalue = \DB::table('sale_items')->where('created_at', '>=', date('Y-m-d').' 00:00:00')->sum('price');
 
          $quantity = \DB::table('products')->sum('qty');
 
         $shortageNumber = 50;
         $lowstock = Product::where('qty', '<=', $shortageNumber)->count();
-        return view('home',compact('products','quantity','lowstock','sales','todaysales','suppliers'));
+        return view('home',compact('products','quantity','lowstock','sales','todaysales','suppliers','todaysalesvalue'));
     }
 }

@@ -69,6 +69,8 @@
                 data: {
                     'quantity': quantity,
                     'product_id': product_id,
+                    'name': name,
+
                 },
                 success: function (response) {
                 alertify.set('notifier','position','top-right');

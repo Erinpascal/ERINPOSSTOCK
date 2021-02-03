@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Saleitem extends Model
+class ProductSale extends Model
 {
-   protected $table = 'sale_items'; 
+       protected $table = 'product_sale'; 
 
     
 
@@ -24,5 +24,5 @@ public function sale()
     {
         return $this->belongsTo(Sale::class);
     }
-    
+
 }

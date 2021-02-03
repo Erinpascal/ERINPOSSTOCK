@@ -9,6 +9,8 @@ use App\Category;
 use App\Product;
 use App\Sale;
 use App\Saleitem;
+use App\ProductSale;
+
 use App\User;
 use Auth;
 
@@ -50,10 +52,11 @@ class CheckoutController extends Controller
             $cart_data = json_decode($cookie_data, true);
             $items_in_cart= $cart_data;
             foreach ($items_in_cart as $itemdata) {
-                 $sales =Saleitem::create([
+                 $sales =ProductSale::create([
                 $products = Product::find($itemdata['item_id']),
                    'sale_id' => $sales->id,
                    'product_id'=> $itemdata['item_id'],
+                    'name'=> $itemdata['item_name'],
                     'price'=> $itemdata['item_price'],
                     'quantity'=> $itemdata['item_quantity'],
 

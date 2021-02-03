@@ -39,8 +39,8 @@
 <i class="icofont icofont-files text-info"></i>
 </div>
 <div class="col-sm-8 text-center">
-<h5>{{$sales}}</h5>
-<span>sales</span>
+<h5>{{$todaysales}}</h5>
+<span>sales today</span>
 </div>
 </div>
 </div>
@@ -50,8 +50,8 @@
 <i class="icofont icofont-envelope-open text-warning"></i>
 </div>
 <div class="col-sm-8 text-center">
-<h5>{{$todaysales}}</h5>
-<span>sales today</span>
+<h5>{{$todaysalesvalue}}</h5>
+<span>Today sales Value</span>
 </div>
 </div>
 </div>
@@ -82,8 +82,8 @@
 <i class="icofont icofont-network text-primary"></i>
 </div>
 <div class="col-sm-8 text-center">
-<h5>600</h5>
-<span>Stock Value</span>
+<h5>{{$todaysalesvalue}}</h5>
+<span>Today Sales Value</span>
 </div>
 </div>
 </div>

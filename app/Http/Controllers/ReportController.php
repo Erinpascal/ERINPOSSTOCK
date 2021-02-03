@@ -23,15 +23,22 @@ class ReportController extends Controller
     //     $this->middleware('auth');
     // }
 
-    public function index() {
+    // public function index() {
        
-        // $sales = Sale::get();
-        $sales = Saleitem::with('products')->get();
+    //     // $sales = Sale::get();
+    //     $sales = Saleitem::get();
 
 
-        return view('Admin/report/index',compact('sales'));
+    //     return view('Admin/report/index',compact('sales'));
+    // }
+
+ public function index()
+    {
+
+        $sales = Sale::with('products')->get();
+
+        return view('admin.report.index', compact('sales'));
     }
-
 
     public function getRecord(Request $request,$id)
 {

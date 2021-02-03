@@ -17,7 +17,7 @@ class ProductsTableDataSeeder extends Seeder
             [
                 'id' => 1,
                 'category_id'=>9,
-                'name' => 'Para',
+                'name' => 'Para1',
                  'code' => 'gfh889',
                  'qty' => '278',
                   'bprice' => '27',
@@ -28,7 +28,7 @@ class ProductsTableDataSeeder extends Seeder
             [
                 'id' => 2,
                  'category_id'=>9,
-                'name' => 'Para',
+                'name' => 'Para2',
                  'code' => 'gfh889',
                  'qty' => '278',
                   'bprice' => '27',
