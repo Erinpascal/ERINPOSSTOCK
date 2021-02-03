@@ -33,7 +33,7 @@ class HomeController extends Controller
         $suppliers = \DB::table('supplies')->count();
 
         $todaysales = \DB::table('sales')->where('created_at', '>=', date('Y-m-d').' 00:00:00')->count();
-        $todaysalesvalue = \DB::table('sale_items')->where('created_at', '>=', date('Y-m-d').' 00:00:00')->sum('price');
+        $todaysalesvalue = \DB::table('product_sale')->where('created_at', '>=', date('Y-m-d').' 00:00:00')->sum('price');
 
          $quantity = \DB::table('products')->sum('qty');
 

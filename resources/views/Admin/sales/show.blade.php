@@ -93,7 +93,7 @@
 </thead>
 <tbody>
 	@php $total = "0"; @endphp
-	@foreach($sales->salesitem as $item)
+	@foreach($sales->item as $item)
 <tr>
 	<td>{{$item->id}}</td>
 <td>
