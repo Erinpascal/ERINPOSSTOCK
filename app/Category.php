@@ -22,8 +22,10 @@ class Category extends Model
         'deleted_at',
     ];
 
-        public function product()
+        public function products()
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Product::class, 'id');
     }
+
+    
 }

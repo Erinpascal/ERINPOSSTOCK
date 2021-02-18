@@ -14,8 +14,8 @@
 
 <div class="card">
 <div class="card-header">
-<h5>Zero Configuration</h5>
-<span>DataTables has most features enabled by default, so all you need to do to use it with your own ables is to call the construction function: $().DataTable();.</span>
+<!-- <h5>Zero Configuration</h5>
+<span>DataTables has most features enabled by default, so all you need to do to use it with your own ables is to call the construction function: $().DataTable();.</span> -->
 <div class="card-header-right">
 <i class="icofont icofont-rounded-down"></i>
 @if ($message = Session::get('success'))

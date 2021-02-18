@@ -21,6 +21,8 @@ class CreateProductsTable extends Migration
             $table->string('qty');
             $table->string('bprice');
             $table->string('sprice');
+            $table->string('profit');
+            $table->string('unit_profit');
             $table->integer('brand_id');
             $table->string('image')->nullable();
             $table->timestamps();

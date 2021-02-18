@@ -50,6 +50,10 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/ionicons.css')}}">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/jquery.mCustomScrollbar.css')}}">
 <link rel="stylesheet" href="{{ asset('assets/css/alertify.min.css')}}"/>
+  <link rel="stylesheet" href="{{ asset('assets/css/jquery-ui.css')}}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
 
 
 </head>
@@ -67,16 +71,13 @@
 @include('sweetalert::alert')
 
 
-
-
-
-
 <script type="text/javascript" src="{{ asset('../bower_components/jquery/dist/jquery.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('../bower_components/jquery-ui/jquery-ui.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('../bower_components/tether/dist/js/tether.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('../bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 
 <script type="text/javascript" src="{{ asset('../bower_components/jquery-slimscroll/jquery.slimscroll.js')}}"></script>
+
 
 <script type="text/javascript" src="{{ asset('../bower_components/modernizr/modernizr.js')}}"></script>
 
@@ -130,6 +131,26 @@
 <script src="{{ asset('assets/js/jquery.mousewheel.min.js')}}"></script>
 <script src="{{ asset('assets/js/custom.js')}}"></script>
 <script src="{{ asset('assets/js/alertify.min.js')}}"></script>
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+ -->  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  	$(document).ready(function(){
+  		$( "#search_text" ).autocomplete({
+      source: function(request, response){
+$.ajax({
+            url: 'src',
+            method: "data",
+            dataType:"dataType"
+            success: function(){
+
+            
+            }
+        });
+      },
+      minlenght: 1,
+    }); 
+  	});
+  </script>
 
 
 

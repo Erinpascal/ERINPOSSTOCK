@@ -47,6 +47,8 @@
 
                         <a href="{{ route('allsale.show', $item->id) }}" title="show sales"  class="btn btn-danger"><i class="icofont icofont-eye-alt"></i></a>
 
+                        <!-- <a href="{{URL::to('/makepdfpurchase/'.$item->id)}}" target="_blank"  class="btn btn-danger btn-sm"><i class="fa fa-print"></i></a>
+ -->
                                            
 </td>
 

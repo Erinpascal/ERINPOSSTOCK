@@ -32,7 +32,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('users','UserController');
     Route::resource('products','ProductController');
     Route::get('product/overdue', 'ProductController@overdue');
-    Route::patch('/restock/{products}', 'ProductController@restoch');
+    Route::patch('/restock/{products}', 'ProductController@restoch')->name('restoch.update');
 
     Route::post('/restock/update/{id}', 'ProductController@restoch')->name('restoch.search');
 
@@ -45,6 +45,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('brands', 'BrandController');
      Route::resource('invoice', 'InvoiceController');
     Route::resource('suppliers', 'SupplierController');
+    Route::get('supply/create', 'SupplierController@supplyget');
+    Route::post('supply', 'SupplierController@supplycreate')->name('supplys.create');
+
      // Route::get('/', 'ProductsController@index');
 Route::get('carts', 'CartController@cart');
 Route::post('add-to-cart/{id}', 'CartController@addToCart');
@@ -56,6 +59,8 @@ Route::delete('delete-from-cart','CartController@deletefromcart');
 
 
 Route::get('checkout','CheckoutController@index');
+Route::post('place-order-with-stripe','CheckoutController@stripeorder');
+
 
 Route::post('place_order', 'CheckoutController@storeorder');
 Route::get('generate-invoice/{id}','InvoiceController@invoice');
@@ -74,6 +79,16 @@ Route::post('report/pdf', 'ReportController@exportPDF')->name('report.pdf');
 // Route::post('report/search', 'ReportController@search')->name('report.search');
 Route::get('report/search/{id}','ReportController@getRecord')->name('sales.search');
 
+Route::get('/makepdfpurchase/{id}', 'ReportController@pdf');
+
+Route::get('/product/category/{id}', 'InvoiceController@show')->name('category.show');
+
+
+Route::get('/collection/{category_url}','InvoiceController@categoryview');
+
+// search
+Route::get('get-more-product', 'InvoiceController@getMoreProducts')->name('products.get-more-products');
+Route::get('productsCat','InvoiceController@productsCat');
 
 
 

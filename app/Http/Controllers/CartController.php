@@ -79,6 +79,7 @@ class CartController extends Controller
             $prod_name = $products->name;
             $image = $products->image;
             $sprice = $products->sprice;
+            $unit_profit = $products->unit_profit;
 
 
             if($products)
@@ -88,6 +89,7 @@ class CartController extends Controller
                     'item_name' => $prod_name,
                     'item_quantity' => $quantity,
                     'item_price' => $sprice,
+                    'item_unit_profit' => $unit_profit,
                     'item_image' => $image
                 );
                 $cart_data[] = $item_array;
@@ -134,23 +136,28 @@ class CartController extends Controller
             $prod_id_is_there = $prod_id;
 
             if(in_array($prod_id_is_there, $item_id_list))
+               {
+            foreach($cart_data as $keys => $values)
             {
-                foreach($cart_data as $keys => $values)
+                if($cart_data[$keys]["item_id"] == $prod_id)
                 {
-                    if($cart_data[$keys]["item_id"] == $prod_id)
-                    {
-                        $cart_data[$keys]["item_quantity"] =  $quantity;
-                        $ttprice = ($cart_data[$key]["item_price"] * $quantity);
-                        $grandtotalprice = number_format($ttprice);
-                        $item_data = json_encode($cart_data);
-                        $minutes = 60;
-                        Cookie::queue(Cookie::make('shopping_cart', $item_data, $minutes));
-                        return response()->json(['status'=>'"'.$cart_data[$keys]["item_name"].'" Quantity Updated',
-                     'gtprice' =>''.$grandtotalprice.''
-                    ]);
-                    }
+                    $cart_data[$keys]["item_quantity"] =$quantity;
+
+                    $ttprice =($cart_data[$keys]["item_price"]* $quantity);
+                    $grandtotalprice =number_format($ttprice);
+
+                    $item_data = json_encode($cart_data);
+                    $minutes = 60;
+                    Cookie::queue(Cookie::make('shopping_cart', $item_data, $minutes));
+                    return response()->json([
+                        'status'=>'"'.$cart_data[$keys]["item_name"].'" Quantity updated','gtprice'=>''.$grandtotalprice.''
+                ]);
                 }
             }
+        }
+
+
+           
         }
     }
 

@@ -10,6 +10,33 @@
 <h5>products in store</h5>
 </div>
 <div class="card-block">
+      @include('Admin.inc.search')
+      <div class="col-xs-6 col-sm-3">
+
+              <select id="catID">
+                 <option value="">Select a Category</option>
+                 @foreach(App\Category::all() as $cList)
+                 <option class="option" value="{{$cList->id}}">{{$cList->name}}</option>
+                 @endforeach
+               </select>
+
+            </div>
+
+             <div class="col-xs-6 col-sm-3">
+            <select id="priceID">
+                <option value="">Select Price Range</option>
+                <option value="0-100">0-100</option>
+                <option value="100-300">100-300</option>
+                <option value="300-500">300-500</option>
+                <option value="500-1000">500-1000</option>
+            </select>
+          </div>
+          
+
+            <button id="findBtn">find</button>
+      
+
+
 <div class="table-responsive">
 <div class="dt-responsive table-responsive">
 
@@ -19,61 +46,11 @@
 
 </div>
 </div>
-<div class="card-block">
-<div class="default-grid">
-<div class="row lightboxgallery-popup">
 
-<!-- <div class="col-sm-3 default-grid-item">
-<div class="card gallery-desc">
-<div class="masonry-media">
-<a class="media-middle" href="#!">
-<img class="img-fluid" src="assets/images/gallery-grid/masonry-1.jpg" alt="masonary">
- </a>
-</div>
-<div class="card-block">
-<h6 class="job-card-desc">Job Description</h6>
-<p class="text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.</p>
-<div class="job-meta-data"><i class="icofont icofont-safety"></i>washington</div>
-<div class="job-meta-data"><i class="icofont icofont-university"></i>10 Years</div>
-</div>
-</div>
-</div> -->
-@foreach ($products as $product)  
-<div class="col-sm-4 default-grid-item">  
-<div class="product_data">
-<div class="card gallery-desc">
-<div class="masonry-media">
-<a class="media-middle" href="#!">
-<img class="img-fluid" src="{{url('images',$product->image)}}" alt="masonary">
-</a>
-</div>
-<div class="card-block">
-<input type="hidden" class="product_id" name="" value="{{$product->id}}">
-<input  type="hidden" value="1" min="1" class="qty-input" max="100" name="">
+<div id="product_data">
+    @include('Admin.pos_invoice.product')
+  </div>
 
-<h6 class="job-card-desc">{{ $product->name }}</h6>
-<p class="text-muted">
-<button type="button" class="add-to-cart-btn btn btn-primary btn-print-invoice waves-effect waves-light m-r-20">Add 
-</button>
-</p>
-
-</div>
-</div>
-</div>
-</div>
-@endforeach
-
-</div>
-
-
-
-
-</div>
-
-
-
-
-</div>
 </div>
 </div>
 </div>
@@ -90,8 +67,8 @@
 </div>
 <div class="card-block">
 <div id="pie-chart" style="height:300px">
-	
-	
+  
+  
 <table class="table">
   <thead>
     <tr>
@@ -112,18 +89,7 @@
 </div>
 </div>
 </div>
-<!-- <div class="col-sm-12">
 
-<div class="card analytic-user">
-<div class="card-block-big text-center">
-<i class="icofont icofont-wallet"></i>
-<h1>$ 324587</h1>
-<h4>All Income</h4>
-</div>
-<div class="card-footer p-t-25 p-b-25">
-<p class="m-b-0">This is standard panel footer</p>
-</div>
-</div> -->
 
 </div>
 </div>
@@ -146,3 +112,61 @@
 
 @endsection
 
+
+
+  @push('scripts')
+
+  <script>
+    $(document).ready(function() {
+        $(document).on('click', '.pagination a', function(event) {
+          event.preventDefault();
+          var page = $(this).attr('href').split('page=')[1];
+          getMoreProducts(page);
+        });
+
+
+        $('#search').on('keyup', function() {
+          $value = $(this).val();
+          getMoreProducts(1);
+        });
+
+        $('#name').on('change', function() {
+          getMoreProducts();
+        });
+
+       
+        
+        
+    });
+
+
+    function getMoreProducts(page) {
+
+      var search = $('#search').val();
+
+      // Search on based of country
+      var selectedCountry = $("#name option:selected").val();
+
+      // Search on based of type
+      var selectedType = $("#sort_by option:selected").val();
+
+
+
+
+      $.ajax({
+        type: "GET",
+        data: {
+          'search_query':search,
+          'name': selectedCountry,
+          'sort_by': selectedType,
+          'range': selectedRange
+        },
+        url: "{{ route('products.get-more-products') }}" + "?page=" + page,
+        success:function(data) {
+          $('#product_data').html(data);
+        }
+      });
+    }
+  </script>
+
+  @endpush

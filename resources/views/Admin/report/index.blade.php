@@ -1,7 +1,5 @@
 @extends('layouts.adminlayout.admin_design')
 @section('content')
-
-<!-- pascal -->
 <div class="page-body">
 <div class="row">
 <div class="col-sm-12">
@@ -43,9 +41,10 @@
 
       <div class="card-block">
 <div class="dt-responsive table-responsive">
-<table id="simpletable" class="table table-striped table-bordered nowrap">
+<table id="" class="table table-striped table-bordered nowrap">
 <thead>
 <tr>
+
 <th>id</th>
 <th>Customer Server</th>
 <th>code</th>
@@ -93,8 +92,45 @@
 </div>
 </div>
 
-</div>
+<div class="row">
+<div class="col-sm-12">
+<table class="table table-responsive invoice-table invoice-total">
+<tbody>
+  
 
+<tr class="text-info">
+<td>
+  <tr>
+<th>Products :</th>
+<td>{{$sales1}}</td>
+</tr>
+<tr>
+<th>Total Quantity</th>
+<td>{{$quantity}}</td>
+</tr>
+<tr>
+<th>Price value :</th>
+<td>{{$price}}</td>
+</tr>
+<tr class="text-info">
+<td>
+<hr />
+<h5 class="text-primary">Profit Made:</h5>
+</td>
+<td>
+<hr />
+<h5 class="text-primary">{{$profit}}</h5><br>
+<hr />
+
+
+
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 
 
 
@@ -112,6 +148,7 @@
 </div>
 </div>
 </div>
+
 </div>
 </div>
 

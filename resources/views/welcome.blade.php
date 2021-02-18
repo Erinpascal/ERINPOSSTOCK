@@ -1,104 +1,159 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en">
 
-        <title>Laravel</title>
+<!-- Mirrored from flatable.phoenixcoded.net/default/auth-sign-up.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 10 Jan 2019 12:15:57 GMT -->
+<head>
+<title>POS</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
 
-            .full-height {
-                height: 100vh;
-            }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="description" content="Phoenixcoded">
+<meta name="keywords" content=", Flat ui, Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
+<meta name="author" content="Phoenixcoded">
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+<link rel="icon" href="{{ asset('assets/images/favicon.ico')}}" type="image/x-icon">
 
-            .position-ref {
-                position: relative;
-            }
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+<link rel="stylesheet" type="text/css" href="{{ asset('../bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
 
-            .content {
-                text-align: center;
-            }
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/icon/themify-icons/themify-icons.css')}}">
 
-            .title {
-                font-size: 84px;
-            }
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/icon/icofont/css/icofont.css')}}">
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/pages/flag-icon/flag-icon.min.css')}}">
 
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/pages/menu-search/css/component.css')}}">
 
-                        <!-- @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif -->
-                    @endauth
-                </div>
-            @endif
+<link rel="stylesheet" href="{{ asset('../bower_components/c3/c3.css')}}" type="text/css" media="all">
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
+<link rel="stylesheet" type="text/css" href="{{ asset('../bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/pages/data-table/css/buttons.dataTables.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('../bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/pages/data-table/extensions/responsive/css/responsive.dataTables.css')}}">
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-                 <form  type="get"   action="{{ url('/search') }}">
-    
-    <input type="text" name="query" />
-    <input type="submit" class="btn btn-sm btn-primary" value="Search" />
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css')}}">
+
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/color/color-1.css')}}" id="color" />
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/linearicons.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/simple-line-icons.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/ionicons.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/jquery.mCustomScrollbar.css')}}">
+</head>
+<body class="fix-menu">
+<section class="login p-fixed d-flex text-center bg-primary common-img-bg">
+
+<div class="container-fluid">
+<div class="row">
+<div class="col-sm-12">
+     @if (count($errors) > 0)
+  <div class="alert alert-danger">
+    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+    <ul>
+       @foreach ($errors->all() as $error)
+         <li>{{ $error }}</li>
+       @endforeach
+    </ul>
+  </div>
+@endif
+
+<div class="login-card card-block auth-body">
+<form class="md-float-material" method="POST" action="{{ route('login') }}">
+@csrf
+
+<div class="text-center">
+<img src="assets/images/auth/logo.png" alt="logo.png">
+</div>
+<div class="auth-box">
+<div class="row m-b-20">
+<div class="col-md-12">
+<h3 class="text-center txt-primary">Sign in. It is fast and easy.</h3>
+</div>
+</div>
+<hr />
+
+<div class="input-group">
+<input type="text" class="form-control" name="email" placeholder="Your Email Address">
+<span class="md-line"></span>
+</div>
+<div class="input-group">
+<input type="password" class="form-control" name="password" placeholder="Choose Password">
+<span class="md-line"></span>
+</div>
+
+
+
+<div class="row m-t-30">
+<div class="col-md-12">
+<button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Sign in now.</button>
+</div>
+</div>
+
+</div>
 </form>
-            </div>
-        </div>
-    </body>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<script type="text/javascript" src="{{ asset('../bower_components/jquery/dist/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('../bower_components/jquery-ui/jquery-ui.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('../bower_components/tether/dist/js/tether.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('../bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+
+<script type="text/javascript" src="{{ asset('../bower_components/jquery-slimscroll/jquery.slimscroll.js')}}"></script>
+
+<script type="text/javascript" src="{{ asset('../bower_components/modernizr/modernizr.js')}}"></script>
+<script type="text/javascript" src="{{ asset('../bower_components/modernizr/feature-detects/css-scrollbars.js')}}"></script>
+
+<script type="text/javascript" src="{{ asset('../bower_components/classie/classie.js')}}"></script>
+
+<script src="{{ asset('../bower_components/d3/d3.min.js')}}"></script>
+<script src="{{ asset('../bower_components/c3/c3.js')}}"></script>
+
+<script type="text/javascript" src="{{ asset('../../www.gstatic.com/charts/loader.js')}}"></script>
+
+<script src="{{ asset('assets/pages/chart/echarts/js/echarts-all.js')}}" type="text/javascript"></script>
+
+<script src="{{ asset('../bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{ asset('../bower_components/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{ asset('assets/pages/data-table/js/jszip.min.js')}}"></script>
+<script src="{{ asset('assets/pages/data-table/js/pdfmake.min.js')}}"></script>
+<script src="{{ asset('assets/pages/data-table/js/vfs_fonts.js')}}"></script>
+<script src="{{ asset('assets/pages/data-table/extensions/responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{ asset('../bower_components/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
+<script src="{{ asset('../bower_components/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
+<script src="{{ asset('../bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('../bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js')}}"></script>
+
+<script type="text/javascript" src="{{ asset('../bower_components/i18next/i18next.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('../bower_components/i18next-xhr-backend/i18nextXHRBackend.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('../bower_components/i18next-browser-languagedetector/i18nextBrowserLanguageDetector.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('../bower_components/jquery-i18next/jquery-i18next.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('assets/pages/edit-table/jquery.tabledit.js')}}"></script>
+<script type="text/javascript" src="{{ asset('assets/pages/edit-table/editable.js')}}"></script>
+
+<script type="text/javascript" src="{{ asset('assets/pages/dashboard/ecommerce-dashboard.js')}}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/script.js')}}"></script>
+<script src="{{ asset('assets/js/pcoded.min.js')}}"></script>
+<script src="{{ asset('assets/js/demo-12.js')}}"></script>
+<script src="{{ asset('assets/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+<script src="{{ asset('assets/js/jquery.mousewheel.min.js')}}"></script>
+</body>
+
+<!-- Mirrored from flatable.phoenixcoded.net/default/auth-sign-up.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 10 Jan 2019 12:15:57 GMT -->
 </html>

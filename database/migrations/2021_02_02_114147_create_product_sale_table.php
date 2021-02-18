@@ -19,7 +19,9 @@ class CreateProductSaleTable extends Migration
             $table->integer('product_id');
             $table->integer('price');
             $table->integer('quantity');
+            $table->integer('unit_profit');
             $table->timestamps();
+            
         });
     }
 

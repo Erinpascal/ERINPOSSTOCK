@@ -59,9 +59,7 @@
 
             var product_id = $(this).closest('.product_data').find('.product_id').val();
             var quantity = $(this).closest('.product_data').find('.qty-input').val();
-
                         // alert(product_id);
-
 
             $.ajax({
                 url: "/add-to-cart/"+product_id,
@@ -69,8 +67,6 @@
                 data: {
                     'quantity': quantity,
                     'product_id': product_id,
-                    'name': name,
-
                 },
                 success: function (response) {
                 alertify.set('notifier','position','top-right');
@@ -85,13 +81,13 @@
     });
 
 
-    // Update Cart Data
+   // Update Cart Data
     $(document).ready(function () {
 
         $('.changeQuantity').click(function (e) {
             e.preventDefault();
 
-             var thisClick = $(this);
+            var thisClick = $(this);
             var quantity = $(this).closest(".cartpage").find('.qty-input').val();
             var product_id = $(this).closest(".cartpage").find('.product_id').val();
 
@@ -107,8 +103,9 @@
                 data: data,
                 success: function (response) {
                     // window.location.reload();
-                    console.log(response.gtprice);
+                    // console.log(response.gtprice);
                     thisClick.closest(".cartpage").find('.cart-grand-total-price').text(response.gtprice);
+                    $('#totalajaxcall').load(location.href + ' .totalpricingload');
                     alertify.set('notifier','position','top-right');
                     alertify.success(response.status);
                 }
@@ -124,6 +121,7 @@
         $('.delete_cart_data').click(function (e) {
             e.preventDefault();
 
+             var thisDeletearea =$(this);
             var product_id = $(this).closest(".cartpage").find('.product_id').val();
 
             var data = {
@@ -138,9 +136,33 @@
                 type: 'DELETE',
                 data: data,
                 success: function (response) {
-                    window.location.reload();
+                    // window.location.reload();
+                    thisDeletearea.closest(".cartpage").remove();
+                    $('#totalajaxcall').load(location.href + ' .totalpricingload');
+                     alertify.set('notifier','position','top-right');
+                    alertify.success(response.status);
                 }
             });
         });
 
     });
+
+    $(document).ready(function(){
+  $("#findBtn").click(function(){
+    var cat = $("#catID").val();
+        var price = $('#priceID').val();
+
+    alert(price);
+    
+    // $.ajax({
+    //   type: 'get',
+    //   dataType: 'html',
+    //   url: '{{url('/productsCat')}}',
+    //   data: 'cat_id=' + cat + '&price=' + price,
+    //   success:function(response){
+    //     console.log(response);
+    //     $("#productData").html(response);
+    //   }
+    // });
+  });
+});

@@ -3,7 +3,6 @@
   <div class="page-body">
     <!-- <form action="/place_order" method="post">
                               {{ csrf_field() }}
-
       <label>name:</label>
     <input type="name" name="">
 <button name="place_order_btn" class="btn btn_primary"></button>

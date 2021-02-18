@@ -22,6 +22,8 @@ class ProductsTableDataSeeder extends Seeder
                  'qty' => '278',
                   'bprice' => '27',
                  'sprice' => '289',
+                 'profit' => '50',
+                  'unit_profit' => '50',
                  'brand_id' => '10',
                  'image' => null,
             ],
@@ -33,12 +35,12 @@ class ProductsTableDataSeeder extends Seeder
                  'qty' => '278',
                   'bprice' => '27',
                  'sprice' => '289',
+                 'profit' => '50',
+                  'unit_profit' => '50',
                  'brand_id' => '10',
                  'image' => null,
 
             ]
         ];
 
-        Product::insert($products);
-    }
 }

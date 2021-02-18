@@ -10,9 +10,10 @@ use App\Product;
 use App\Sale;
 use App\Saleitem;
 use App\ProductSale;
-
 use App\User;
 use Auth;
+use Stripe\Charge;
+use Stripe\Stripe;
 
 
 
@@ -28,6 +29,8 @@ class CheckoutController extends Controller
     {
         $cookie_data = stripslashes(Cookie::get('shopping_cart'));
         $cart_data = json_decode($cookie_data, true);
+        $category = Category::get();
+
         return view('Admin.checkout.index')->with('cart_data',$cart_data);
     }
     public function storeorder(Request $request)
@@ -58,6 +61,7 @@ class CheckoutController extends Controller
                    'product_id'=> $itemdata['item_id'],
                     'name'=> $itemdata['item_name'],
                     'price'=> $itemdata['item_price'],
+                    'unit_profit'=> $itemdata['item_unit_profit'],
                     'quantity'=> $itemdata['item_quantity'],
 
                  ]);
@@ -69,6 +73,36 @@ class CheckoutController extends Controller
             return back()->with('success','Sales successfully made');
         }
     }
+
+    public function stripeorder(Request $request)
+{    
+    if(isset($_POST['stipe_payment_btn']))
+    {
+        $stripetoken = $request->input('stripeToken');
+        $STRIPE_SECRET = "YOUR_STRIPE_SECRET";
+        Stripe::setApiKey($STRIPE_SECRET);
+        \Stripe\Charge::create([
+            'amount' => 100 * 100,
+            'currency' => 'usd',
+            'description' => "Thank you for purchasing with Fabcart",
+            'source' => $stripetoken,
+            'shipping' => [
+                'name' => "User Name",
+                'phone' => "+1XXXXXXX",
+                'address' => [
+                    'line1' => "Address 1",
+                    'line2' => "Address 2",
+                    'postal_code' => "Zipcode",
+                    'city' => "City",
+                    'state' => "State",
+                    'country' => 'US',
+                ],
+            ],
+        ]);
+        return redirect('/thank-you')->with('status','Order has been placed Successfully');
+    }
+}
+
 
     /**
      * Show the form for creating a new resource.

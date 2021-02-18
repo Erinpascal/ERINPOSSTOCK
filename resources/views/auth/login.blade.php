@@ -3,7 +3,7 @@
 
 <!-- Mirrored from flatable.phoenixcoded.net/default/auth-sign-up.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 10 Jan 2019 12:15:57 GMT -->
 <head>
-<title>Flat Able - Premium Admin Template by Phoenixcoded</title>
+<title>POS</title>
 
 
 <!--[if lt IE 9]>

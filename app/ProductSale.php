@@ -15,6 +15,7 @@ class ProductSale extends Model
         'product_id',
         'price',
         'quantity',
+        'unit_profit',
     ];
 public function products()
 {

@@ -23,7 +23,8 @@
 <thead>
 <tr>
 <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 1000px;">Product Name</th>
-<th class="sorting_disabled" rowspan="1" colspan="1" style="width: 100px;">Amount</th>
+<th class="sorting_disabled" rowspan="1" colspan="1" style="width: 100px;">Price</th>
+
 <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 100px;">Qty</th>
 <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 130px;">Grand Total</th>
 
@@ -38,6 +39,7 @@
 <td class="pro-name">
 {{ $data['item_name'] }}</td>
 <td>{{ number_format($data['item_price'], 2) }}</td>
+
 <td  class="pro-name">
 <!-- <input type="number" class="form-control" value="{{ $data['item_quantity'] }}" min="1" max="100"> -->
 <input type="hidden" class="product_id" value="{{ $data['item_id'] }}" >
@@ -50,10 +52,9 @@
 <span class="icofont icofont-minus m-0"></span>
 </button>
 </span>
+ <!-- <input type="hidden" class="product_id" value="{{ $data['item_id'] }}" > -->
 <input type="text"  class=" qty-input input-number text-center"maxlength="2" max="100" value="{{ $data['item_quantity'] }}">
- <input type="hidden" class="product_id" value="{{ $data['item_id'] }}" >
-<!-- 
-            <input type="text" class="qty-input form-control" maxlength="2" max="10" value="{{ $data['item_quantity'] }}"> -->
+
 
 <span class="input-group-btn">
 <button type="button" class="btn btn-default btn-number increment-btn changeQuantity shadow-none" data-type="plus" data-field="quant[1]">
@@ -63,9 +64,10 @@
 </div>
 </div>
 </div>
-
 </td >
-<td>{{ number_format($data['item_quantity'] * $data['item_price'], 2) }}</td>
+<td class="cart-product-grand-total">
+<span class="cart-grand-total-price">{{ number_format($data['item_quantity'] * $data['item_price'], 2) }}</span></td>
+<!-- <td>{{ number_format($data['item_quantity'] * $data['item_price'], 2) }}</td> -->
 <td class="action-icon text-center">
 <a href="#!" class="delete_cart_data" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="icofont icofont-delete-alt"></i></a>
 </td>
@@ -92,7 +94,11 @@
 
                                 <div class="col-md-4 col-sm-12 ">
                                     <div class="cart-shopping-total">
-                                        <div class="row">
+                                        <div id="totalajaxcall">
+
+                                       <div class="totalpricingload">
+                                           
+                                            <div class="row">
                                             <div class="col-md-6">
                                                 <h6 class="cart-subtotal-name">Subtotal</h6>
                                             </div>
@@ -116,6 +122,9 @@
                                             </div>
                                         </div>
                                         <hr>
+
+                                       </div>
+                                   </div>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="cart-checkout-btn text-center">

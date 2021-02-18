@@ -60,12 +60,14 @@ class ProductController extends Controller
          $products = new Product();
         $products->name = $request->get('name');
         $products->code =$this->generate();
-
         $products->category_id    = $request->category_id;
         $products->brand_id    = $request->brand_id;
         $products->qty = $request->get('qty');
         $products->bprice = $request->get('bprice');
         $products->sprice = $request->get('sprice');
+        $products->profit = $products->sprice -$products->bprice;
+        $products->unit_profit = $products->profit /$products->qty;
+
         $products->image = $input['image'];
          
 

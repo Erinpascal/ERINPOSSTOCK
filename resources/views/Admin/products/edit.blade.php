@@ -143,8 +143,8 @@
 <p class="m-0">
 <div class="form-group row">
   <form id="main"method="POST" action="{{route('restoch.update',[$product->id])}}"  enctype="multipart/form-data">
-                        <!-- <input type="hidden" name="_method" value="PATCH">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
+                        <input type="hidden" name="_method" value="PATCH">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         {{csrf_field()}}
 
 

@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Supply;
+use App\Brand;
+use App\Product;
+use App\Supplyer;
+use DB;
+
 
 
 class SupplierController extends Controller
@@ -28,6 +33,42 @@ class SupplierController extends Controller
     {
         return view('Admin.suppliers.create');
     }
+
+     public function supplyget()
+    {
+        
+        $brand = Brand::all();
+        $supply=Supply::all();
+        $products = Product::all();
+        return view('Admin.supply.create',compact('supply','brand','products'));
+    }
+
+    public function supplycreate(Request $request)
+    {
+       $this->validate($request, [
+            'name' =>  ['required'],
+            'quantity' =>  ['required'],
+            'price' =>  ['required'],
+            'brand_id' =>  ['required'],
+            'supply_id' =>  ['required'],
+            'expire' =>  ['required'],
+
+        ]);
+
+         $supplyer = new Supplyer();
+        $supplyer->name = $request->get('name');
+        $supplyer->supply_id    = $request->supply_id;
+        $supplyer->brand_id    = $request->brand_id;
+        $supplyer->quantity = $request->get('quantity');
+        $supplyer->price = $request->get('price');
+        $supplyer->type = $request->get('type');
+        $supplyer->expire = $request->get('expire');
+        $supplyer->save();
+
+        return back()->with('success','Product created successfully.');
+
+    }
+
 
     /**
      * Store a newly created resource in storage.
