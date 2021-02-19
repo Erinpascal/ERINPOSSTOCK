@@ -69,6 +69,8 @@ class ProductController extends Controller
         $products->unit_profit = $products->profit /$products->qty;
 
         $products->image = $input['image'];
+
+        // dd( $products);
          
 
 
